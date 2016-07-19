@@ -32,7 +32,9 @@ extern StuLink* delete_node_by_number(StuLink*, int);
 
 extern void show_one_node(StuLink*);
 
-extern int menu_search_delete_modify(char**, int);
+extern int menu_search_delete_modify(char* operation_array[], int);
+
+extern StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[]);
 
 extern void save_file(StuLink*, char*);
 
