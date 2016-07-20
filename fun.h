@@ -24,29 +24,31 @@ extern const char* modify[];
 
 /*******************Function Interface***************/
 
-extern StuLink* add_node(StuLink*);
+/*Add a node data to StuLink head*/
+extern StuLink* add_node(StuLink* p_head);
 
-extern void show_node(StuLink*);
+/*Show one node data from StuLink*/
+extern void show_one_node(StuLink* p_head);
 
-extern void free_all_node(StuLink*);
+extern void show_node(StuLink* p_head);
 
-extern StuLink* search_node_by_name(StuLink*, char*);
+extern void free_all_node(StuLink* p_head);
 
-extern StuLink* search_node_by_number(StuLink*, int);
+extern StuLink* search_node_by_name(StuLink* p_head, char*);
 
-extern StuLink* delete_node_by_name(StuLink*, char*);
+extern StuLink* search_node_by_number(StuLink* p_head, int);
 
-extern StuLink* delete_node_by_number(StuLink*, int);
+extern StuLink* delete_node_by_name(StuLink* p_head, char*);
 
-extern void show_one_node(StuLink*);
+extern StuLink* delete_node_by_number(StuLink* p_head, int);
 
 extern int menu_search_delete_modify(const char* operation_array[], int);
 
 extern StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number);
 
-extern void save_file(StuLink*, char*);
+extern void save_file(StuLink* p_head, char*);
 
-extern StuLink* read_file(StuLink*, char*);
+extern StuLink* read_file(StuLink* p_head, char*);
 
 extern StuLink* malloc_node();
 
