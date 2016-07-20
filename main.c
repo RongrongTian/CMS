@@ -45,7 +45,7 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
 		case 2:
 			puts("\nDelete Node:");
-			phead = search_delete_modify_operation(phead, delete);
+			phead = search_delete_modify_operation(phead, delete, delete_node_by_name, delete_node_by_number);
 /*
 			temp_menu_chose = menu_search_delete_modify(delete, 2);
 
@@ -63,7 +63,7 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
 		case 3:
 			puts("\nSearch Node:");
-			pret_node = search_delete_modify_operation(phead, search);
+			pret_node = search_delete_modify_operation(phead, search, search_node_by_name, search_node_by_number);
 			show_one_node(pret_node);
 /*
 			temp_menu_chose = menu_search_delete_modify(search, 2);

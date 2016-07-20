@@ -324,7 +324,7 @@ StuLink* read_file(StuLink* phead, char* pfilename)
  *
  * You can use this function to search or delete or modify a node data in function:menu_fun
  */
-StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[]) {
+StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number) {
 
     //Get select number
     int temp_menu_chose = menu_search_delete_modify(operation_array, 2);
@@ -332,6 +332,27 @@ StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[]
     int node_number = 0;
 	char node_name[20];
 
+	char temp_op_str[7] = {0};
+	strncpy(temp_op_str, operation_array[0], 6);
+    //ptemp = operation_array[0];
+    //*(ptemp + 6) = '\0';
+
+    if (1 == temp_menu_chose) {
+
+        printf("please input %s node name: ", temp_op_str);
+        scanf("%s", node_name);
+        //Fun_By_Name p_temp_fun = (Fun_By_Name)p_fun;
+        return p_fun_name(p_head, node_name);
+				//show_one_node(pret_node);
+    } else {
+        printf("please input %s node number: ", temp_op_str);
+        scanf("%d", &node_number);
+        return  p_fun_number(p_head, node_number);
+				//show_one_node(pret_node);
+    }
+
+
+    /*
     switch (*operation_array[0]) {
         //search
         case 's':
@@ -367,7 +388,7 @@ StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[]
         default:
             break;
 
-    }
+    }*/
 
 
 

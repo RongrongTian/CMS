@@ -14,6 +14,10 @@ typedef struct student {
 	struct student* pnext;
 }StuLink;
 
+
+typedef StuLink* (*Fun_By_Name)(StuLink*, char*);
+typedef StuLink* (*Fun_By_Number)(StuLink*, int);
+
 /*******************Function Interface***************/
 
 extern StuLink* add_node(StuLink*);
@@ -34,7 +38,7 @@ extern void show_one_node(StuLink*);
 
 extern int menu_search_delete_modify(char* operation_array[], int);
 
-extern StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[]);
+extern StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number);
 
 extern void save_file(StuLink*, char*);
 
