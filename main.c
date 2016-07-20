@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "fun.h"
 
+
 /*Show menu to user*/
 void show_menu(int* pchose) {
 
@@ -28,10 +29,11 @@ void show_menu(int* pchose) {
 /*Chose function from chose*/
 StuLink* menu_fun(StuLink* phead, int chose) {
 
+#if 0
 	char* search[] = {"search by name", "search by number"};
 	char* delete[] = {"delete by name", "delete by number"};
 	char* modify[] = {"modify by name", "modify by number"};
-
+#endif
 	//int temp_menu_chose = 0;
 	//int node_number = 0;
 	//char node_name[20];

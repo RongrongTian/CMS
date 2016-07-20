@@ -1,5 +1,9 @@
 #include "fun.h"
 
+const char* search[] = {"search by name", "search by number"};
+const char* delete[] = {"delete by name", "delete by number"};
+const char* modify[] = {"modify by name", "modify by number"};
+
 
 /** \brief Init a new node data.
  *
@@ -155,7 +159,7 @@ void show_one_node(StuLink* pnode)
 
 
 /*This function can show menu by different operator*/
-int menu_search_delete_modify(char** pstring, int num)
+int menu_search_delete_modify(const char** pstring, int num)
 {
     //int i = 0;
     for (int i = 0; i < num; i++)
@@ -340,7 +344,7 @@ StuLink* read_file(StuLink* phead, char* pfilename)
  *
  * You can use this function to search or delete or modify a node data in function:menu_fun
  */
-StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number) {
+StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number) {
 
     //Get select number
     int temp_menu_chose = menu_search_delete_modify(operation_array, 2);

@@ -4,7 +4,6 @@
 #include <string.h>
 
 
-
 /*The LinkList of the student*/
 typedef struct student {
 	int number;
@@ -17,6 +16,11 @@ typedef struct student {
 
 typedef StuLink* (*Fun_By_Name)(StuLink*, char*);
 typedef StuLink* (*Fun_By_Number)(StuLink*, int);
+
+
+extern const char* search[];
+extern const char* delete[];
+extern const char* modify[];
 
 /*******************Function Interface***************/
 
@@ -36,9 +40,9 @@ extern StuLink* delete_node_by_number(StuLink*, int);
 
 extern void show_one_node(StuLink*);
 
-extern int menu_search_delete_modify(char* operation_array[], int);
+extern int menu_search_delete_modify(const char* operation_array[], int);
 
-extern StuLink* search_delete_modify_operation(StuLink* p_head, char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number);
+extern StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number);
 
 extern void save_file(StuLink*, char*);
 
