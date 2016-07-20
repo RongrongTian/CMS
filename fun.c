@@ -221,7 +221,11 @@ StuLink* delete_node_by_name(StuLink* phead, char* pname)
 
 
 
-/*Delete a node by number*/
+/** \brief This function can delete a student data node by the number.
+ * \param	p1 the pointer of the phead.
+ * \param   p2 the number of the student.
+ * \return	StuLink* phead.
+ */
 StuLink* delete_node_by_number(StuLink* phead, int number)
 {
     assert(phead != NULL);
@@ -268,6 +272,13 @@ StuLink* delete_node_by_number(StuLink* phead, int number)
     return phead;
 }
 
+
+/** \brief This function can save student data to local file.
+ *
+ * \param	p1 the pointer of the phead.
+ * \param   p2 the name of the save file.
+ * \return	StuLink* phead.
+ */
 void save_file(StuLink* phead, char* pfilename)
 {
     assert(phead != NULL);
@@ -291,7 +302,12 @@ void save_file(StuLink* phead, char* pfilename)
     printf("\tsave to file success, write count = %d\n", write_count);
 }
 
-/*Read Stu data from file to memory*/
+/** \brief This function can read student data from local file.
+ *
+ * \param	p1 the pointer of the phead.
+ * \param   p2 the name of the local file.
+ * \return	StuLink* phead.
+ */
 StuLink* read_file(StuLink* phead, char* pfilename)
 {
 
