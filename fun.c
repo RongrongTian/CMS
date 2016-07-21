@@ -419,10 +419,76 @@ StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_a
  * \return	StuLink* : The head of the StuLink that has modify the node that name is equal to p_pname
  */
 StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname) {
+    int _chose = modify_select();
+
+    StuLink* _ptemp = p_phead;
+
+    int _temp_number = 0;
+    int _temp_age = 0;
+    float _temp_score = 0;
+    char _temp_name[10] = {0};
+
+    while (_ptemp) {
+        //Find the node that need to modify.
+        if (strcmp(p_pname, _ptemp->name)) {
+            //modify number
+            if (1 == _chose) {
+                printf("please input the new number: ");
+                scanf("%d", &_temp_number);
+                _ptemp->number = _temp_number;
+            }
+            if (2 == _chose) {
+                printf("please input the new age: ");
+                scanf("%d", &_temp_age);
+                _ptemp->age = _temp_age;
+            }
+            if (3 == _chose) {
+                printf("please input the new score: ");
+                scanf("%f", &_temp_score);
+                _ptemp->score = _temp_score;
+            }
+            if (4 == _chose) {
+                printf("please input the new name: ");
+                scanf("%s", _temp_name);
+                strcpy(_ptemp->name,_temp_name);
+            }
+            break;
+        }
+        _ptemp = _ptemp->pnext;
+    }
+
+    return p_phead;
+}
+
+/** \brief Modify a node by the student`s number in the StuLink.
+ *
+ * \param	p_phead : The head of the StuLink.
+ * \param	p_number : The student number of the delete.
+ * \return	StuLink* : The head of the StuLink that has modify the node that name is equal to p_pname
+ */
+StuLink* modify_node_by_number(StuLink* p_phead, int p_number) {
+    int _chose = modify_select();
+
+    return NULL;
+}
 
 
+/** \brief Return a number that you select the part of the StuLink
+ *
+ * \param	void.
+ * \param	void.
+ * \return	int : The number of your chose.
+ */
+int modify_select() {
+    puts("\t1.modify number");
+    puts("\t2.modify age");
+    puts("\t3.modify score");
+    puts("\t4.modify name");
+    puts("please input your modify chose[1,4]: ");
 
-
+    int _chose = 0;
+    scanf("%d", &_chose);
+    return _chose;
 }
 
 

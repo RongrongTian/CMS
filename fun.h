@@ -51,6 +51,9 @@ extern StuLink* delete_node_by_number(StuLink* p_head, int);
 /*Modify a node by the student`s name in the StuLink.*/
 extern StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname);
 
+/*Modify a node by the student`s number in the StuLink.*/
+extern StuLink* modify_node_by_number(StuLink* p_phead, int p_number);
+
 /*This function show a menu that you can chose three function to opetate the student data.*/
 extern int menu_search_delete_modify(const char* operation_array[], int);
 
@@ -65,6 +68,9 @@ extern StuLink* read_file(StuLink* p_head, char*);
 
 /*This function can malloc a new node that can link to the StuLink.*/
 extern StuLink* malloc_node();
+
+/*Return a number that you select the part of the StuLink*/
+extern int modify_select();
 
 
 
