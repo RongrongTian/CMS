@@ -430,7 +430,7 @@ StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname) {
 
     while (_ptemp) {
         //Find the node that need to modify.
-        if (strcmp(p_pname, _ptemp->name)) {
+        if (!strcmp(p_pname, _ptemp->name)) {
             //modify number
             if (1 == _chose) {
                 printf("please input the new number: ");
@@ -457,7 +457,7 @@ StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname) {
         _ptemp = _ptemp->pnext;
     }
 
-    return p_phead;
+    return _ptemp;
 }
 
 /** \brief Modify a node by the student`s number in the StuLink.
@@ -469,7 +469,43 @@ StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname) {
 StuLink* modify_node_by_number(StuLink* p_phead, int p_number) {
     int _chose = modify_select();
 
-    return NULL;
+    StuLink* _ptemp = p_phead;
+
+    int _temp_number = 0;
+    int _temp_age = 0;
+    float _temp_score = 0;
+    char _temp_name[10] = {0};
+
+    while (_ptemp) {
+        //Find the node that need to modify.
+        if (p_number == _ptemp->number) {
+            //modify number
+            if (1 == _chose) {
+                printf("please input the new number: ");
+                scanf("%d", &_temp_number);
+                _ptemp->number = _temp_number;
+            }
+            if (2 == _chose) {
+                printf("please input the new age: ");
+                scanf("%d", &_temp_age);
+                _ptemp->age = _temp_age;
+            }
+            if (3 == _chose) {
+                printf("please input the new score: ");
+                scanf("%f", &_temp_score);
+                _ptemp->score = _temp_score;
+            }
+            if (4 == _chose) {
+                printf("please input the new name: ");
+                scanf("%s", _temp_name);
+                strcpy(_ptemp->name,_temp_name);
+            }
+            break;
+        }
+        _ptemp = _ptemp->pnext;
+    }
+
+    return _ptemp;
 }
 
 
