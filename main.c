@@ -28,15 +28,6 @@ void show_menu(int* pchose) {
 
 /*Chose function from chose*/
 StuLink* menu_fun(StuLink* phead, int chose) {
-
-#if 0
-	char* search[] = {"search by name", "search by number"};
-	char* delete[] = {"delete by name", "delete by number"};
-	char* modify[] = {"modify by name", "modify by number"};
-#endif
-	//int temp_menu_chose = 0;
-	//int node_number = 0;
-	//char node_name[20];
 	StuLink* pret_node = NULL;
 	char file_name[50];
 
@@ -50,43 +41,11 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 		case 2:
 			puts("\nDelete Node:");
 			phead = search_delete_modify_operation(phead, delete, delete_node_by_name, delete_node_by_number);
-/*
-			temp_menu_chose = menu_search_delete_modify(delete, 2);
-
-			if (1 == temp_menu_chose) {
-				printf("please input delete node name: ");
-				scanf("%s", node_name);
-				phead = delete_node_by_name(phead, node_name);
-
-			} else {
-				printf("please input delete node number: ");
-				scanf("%d", &node_number);
-				phead = delete_node_by_number(phead, node_number);
-			}
-*/
 			break;
 		case 3:
 			puts("\nSearch Node:");
 			pret_node = search_delete_modify_operation(phead, search, search_node_by_name, search_node_by_number);
 			show_one_node(pret_node);
-/*
-			temp_menu_chose = menu_search_delete_modify(search, 2);
-
-			if (1 == temp_menu_chose) {
-				printf("please input search node name: ");
-				scanf("%s", node_name);
-				pret_node = search_node_by_name(phead, node_name);
-
-				show_one_node(pret_node);
-
-			} else {
-				printf("please input search node number: ");
-				scanf("%d", &node_number);
-				pret_node = search_node_by_number(phead, node_number);
-
-				show_one_node(pret_node);
-			}
-*/
 			break;
 		case 4:
 			puts("\nModify Node:");
