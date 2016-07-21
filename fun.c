@@ -52,20 +52,21 @@ StuLink* malloc_node() {
 /** \brief Add a node data to StuLink head.
  *
  * \param	phead : The head of the StuLink.
- * \return	void.
+ * \param	p_ptemp : The node that you want to add to the head.
+ * \return	StuLink*. The head of the StuLink.
  */
-StuLink* add_node(StuLink* phead) {
-    StuLink* ptemp = malloc_node();
+StuLink* add_node(StuLink* phead, StuLink* p_ptemp) {
+    //StuLink* ptemp = malloc_node();
 
     //init node data
-    init_node(ptemp);
+    //init_node(ptemp);
 
     if (NULL == phead) {
-        ptemp->pnext = NULL;
-        phead = ptemp;
+        p_ptemp->pnext = NULL;
+        phead = p_ptemp;
     } else {
-        ptemp->pnext = phead;
-        phead = ptemp;
+        p_ptemp->pnext = phead;
+        phead = p_ptemp;
     }
 
     return phead;
@@ -200,32 +201,34 @@ StuLink* delete_node_by_name(StuLink* phead, char* pname) {
     //StuLink* ptemp = phead;
     StuLink* pr = phead;
     StuLink* pn = phead;//This pointer is point to the delete node
-    char isDelete = 0;
+//    char isDelete = 0;
 
     while (pn) {
         if (!strcmp(pn->name, pname)) {
+            /*
+                        printf("Sure to delete the node?\n");
+                        show_one_node(pn);
+                        printf("y or n: ");
+                        while ((isDelete = getchar()) == '\n');
 
-            printf("Sure to delete the node?\n");
-            show_one_node(pn);
-            printf("y or n: ");
-            while ((isDelete = getchar()) == '\n');
+                        if ('Y' == isDelete || 'y' == isDelete) {
+                            if (pn == phead) {
 
-            if ('Y' == isDelete || 'y' == isDelete) {
-                if (pn == phead) {
+                                //delete head node
+                                phead = phead->pnext;
+                            } else {
 
-                    //delete head node
-                    phead = phead->pnext;
-                } else {
-                    /*
-                    	if pn->pnext = NULL, then we can delete the last						node.
-                    */
-                    pr->pnext = pn->pnext;
-                }
-                free(pn);
-                pn = NULL;
-                break;
-            }
+                                //	if pn->pnext = NULL, then we can delete the last						node.
+
+                                pr->pnext = pn->pnext;
+                            }
+                            free(pn);
+                            pn = NULL;
+            */
+            delete_node(phead, pn, pr);
+            break;
         }
+
         pr = pn;
         pn = pn->pnext;
 
@@ -245,39 +248,77 @@ StuLink* delete_node_by_number(StuLink* phead, int number) {
 
     //StuLink* ptemp = phead;
     StuLink* pr = phead;
-    StuLink* pn = phead;//This pointer is point to the delete node
-    char isDelete = 0;
+    //This pointer is point to the delete node
+    StuLink* pn = phead;
+    //char isDelete = 0;
 
     while (pn) {
         if (number == pn->number) {
+            /*
+                        printf("Sure to delete the node?\n");
+                        show_one_node(pn);
+                        printf("y or n: ");
+                        while ((isDelete = getchar()) == '\n');
 
-            printf("Sure to delete the node?\n");
-            show_one_node(pn);
-            printf("y or n: ");
-            while ((isDelete = getchar()) == '\n');
+                        if ('Y' == isDelete || 'y' == isDelete) {
+                            if (pn == phead) {
 
-            if ('Y' == isDelete || 'y' == isDelete) {
-                if (pn == phead) {
+                                //delete head node
+                                phead = phead->pnext;
+                            } else {
 
-                    //delete head node
-                    phead = phead->pnext;
-                } else {
-                    /*
-                    	if pn->pnext = NULL, then we can delete the last						node.
-                    */
-                    pr->pnext = pn->pnext;
-                }
-                free(pn);
-                pn = NULL;
-                break;
-            }
+                                //	if pn->pnext = NULL, then we can delete the last						node.
+
+                                pr->pnext = pn->pnext;
+                            }
+                            free(pn);
+                            pn = NULL;
+             */
+            delete_node(phead, pn, pr);
+            break;
         }
+
         pr = pn;
         pn = pn->pnext;
 
     }
     return phead;
 }
+
+/** \brief Delete a node.
+ *
+ * \param p_phead: The head of the StuLink.
+ * \param p_pnode: The node that you want to delete.
+ * \param p_privew:The point that point to the node pre.
+ * \return void.
+ */
+
+void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
+    char _isDelete = 0;
+
+    printf("Sure to delete the node?\n");
+    show_one_node(p_pnode);
+    printf("y or n: ");
+    while ((_isDelete = getchar()) == '\n');
+
+    if ('Y' == _isDelete || 'y' == _isDelete) {
+        if (p_pnode == p_phead) {
+
+            //delete head node
+            p_phead = p_phead->pnext;
+        } else {
+
+            //if pn->pnext = NULL, then we can delete the last	node.
+
+            p_privew->pnext = p_pnode->pnext;
+        }
+        free(p_pnode);
+        p_pnode = NULL;
+    }
+
+
+}
+
 
 
 /** \brief This function can save student data to local file.
@@ -323,15 +364,25 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
     while (1 == fread(ptemp, sizeof(StuLink), 1, pfr)) {
         fflush(pfr);
         read_count++;
-        phead = add_node(ptemp);
+        phead = add_node(phead, ptemp);
         ptemp = malloc_node();
     }
 
-    free(ptemp);//Don`t foget to free the last malloc node
+    //Don`t foget to free the last malloc node
+    free(ptemp);
     fclose(pfr);
 
     printf("\n\tRead file success, read count = %d\n", read_count);
     return phead;
+}
+
+/** \brief Init file name
+ * \param p_pfile_name: The file name you want to init
+ * \return void.
+ */
+void init_file(char* p_pfile_name) {
+    printf("please input the file name: ");
+    scanf("%s", p_pfile_name);
 }
 
 /** \brief	This function which you can use to operate the student data in the set of [search, delete, modify].
@@ -358,57 +409,14 @@ StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_a
     //*(ptemp + 6) = '\0';
 
     if (1 == temp_menu_chose) {
-
         printf("please input %s node name: ", temp_op_str);
         scanf("%s", node_name);
-        //Fun_By_Name p_temp_fun = (Fun_By_Name)p_fun;
         return p_fun_name(p_head, node_name);
-        //show_one_node(pret_node);
-    } else {
+     } else {
         printf("please input %s node number: ", temp_op_str);
         scanf("%d", &node_number);
         return  p_fun_number(p_head, node_number);
-        //show_one_node(pret_node);
     }
-
-
-    /*
-    switch (*operation_array[0]) {
-        //search
-        case 's':
-    		if (1 == temp_menu_chose) {
-    			printf("please input search node name: ");
-    			scanf("%s", node_name);
-    			return search_node_by_name(p_head, node_name);
-    			//show_one_node(pret_node);
-    		} else {
-    			printf("please input search node number: ");
-    			scanf("%d", &node_number);
-    			return  search_node_by_number(p_head, node_number);
-    			//show_one_node(pret_node);
-    		}
-            break;
-        //delete
-        case 'd':
-            if (1 == temp_menu_chose) {
-                printf("please input delete node name: ");
-                scanf("%s", node_name);
-                return delete_node_by_name(p_head, node_name);
-            } else {
-                printf("please input delete node number: ");
-                scanf("%d", &node_number);
-                return delete_node_by_number(p_head, node_number);
-            }
-
-            break;
-        //modify
-        case 'm':
-
-            break;
-        default:
-            break;
-
-    }*/
 }
 
 
@@ -422,36 +430,39 @@ StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname) {
     int _chose = modify_select();
 
     StuLink* _ptemp = p_phead;
-
-    int _temp_number = 0;
-    int _temp_age = 0;
-    float _temp_score = 0;
-    char _temp_name[10] = {0};
-
+    /*
+        int _temp_number = 0;
+        int _temp_age = 0;
+        float _temp_score = 0;
+        char _temp_name[10] = {0};
+    */
     while (_ptemp) {
         //Find the node that need to modify.
         if (!strcmp(p_pname, _ptemp->name)) {
             //modify number
-            if (1 == _chose) {
-                printf("please input the new number: ");
-                scanf("%d", &_temp_number);
-                _ptemp->number = _temp_number;
-            }
-            if (2 == _chose) {
-                printf("please input the new age: ");
-                scanf("%d", &_temp_age);
-                _ptemp->age = _temp_age;
-            }
-            if (3 == _chose) {
-                printf("please input the new score: ");
-                scanf("%f", &_temp_score);
-                _ptemp->score = _temp_score;
-            }
-            if (4 == _chose) {
-                printf("please input the new name: ");
-                scanf("%s", _temp_name);
-                strcpy(_ptemp->name,_temp_name);
-            }
+            /*
+                       if (1 == _chose) {
+                           printf("please input the new number: ");
+                           scanf("%d", &_temp_number);
+                           _ptemp->number = _temp_number;
+                       }
+                       if (2 == _chose) {
+                           printf("please input the new age: ");
+                           scanf("%d", &_temp_age);
+                           _ptemp->age = _temp_age;
+                       }
+                       if (3 == _chose) {
+                           printf("please input the new score: ");
+                           scanf("%f", &_temp_score);
+                           _ptemp->score = _temp_score;
+                       }
+                       if (4 == _chose) {
+                           printf("please input the new name: ");
+                           scanf("%s", _temp_name);
+                           strcpy(_ptemp->name,_temp_name);
+                       }
+            */
+            modify_node(_ptemp, _chose);
             break;
         }
         _ptemp = _ptemp->pnext;
@@ -470,16 +481,17 @@ StuLink* modify_node_by_number(StuLink* p_phead, int p_number) {
     int _chose = modify_select();
 
     StuLink* _ptemp = p_phead;
-
-    int _temp_number = 0;
-    int _temp_age = 0;
-    float _temp_score = 0;
-    char _temp_name[10] = {0};
-
+    /*
+        int _temp_number = 0;
+        int _temp_age = 0;
+        float _temp_score = 0;
+        char _temp_name[10] = {0};
+    */
     while (_ptemp) {
         //Find the node that need to modify.
         if (p_number == _ptemp->number) {
             //modify number
+            /*
             if (1 == _chose) {
                 printf("please input the new number: ");
                 scanf("%d", &_temp_number);
@@ -499,13 +511,58 @@ StuLink* modify_node_by_number(StuLink* p_phead, int p_number) {
                 printf("please input the new name: ");
                 scanf("%s", _temp_name);
                 strcpy(_ptemp->name,_temp_name);
-            }
+            }*/
+            modify_node(_ptemp, _chose);
             break;
         }
         _ptemp = _ptemp->pnext;
     }
 
     return _ptemp;
+}
+
+/** \brief  Modify a node data
+ *
+ * \param	p_pnode : The node that you want to modify.
+ * \param	p_chose : The part that you want to modify in the p_pnode.
+ * \return	void.
+ */
+void modify_node(StuLink* p_pnode, int p_chose) {
+    int _temp_number = 0;
+    int _temp_age = 0;
+    float _temp_score = 0;
+    char _temp_name[10] = {0};
+
+    switch (p_chose) {
+    case 1:
+        printf("please input the new number: ");
+        scanf("%d", &_temp_number);
+        p_pnode->number = _temp_number;
+        break;
+
+    case 2:
+        printf("please input the new age: ");
+        scanf("%d", &_temp_age);
+        p_pnode->age = _temp_age;
+        break;
+
+    case 3:
+        printf("please input the new score: ");
+        scanf("%f", &_temp_score);
+        p_pnode->score = _temp_score;
+        break;
+
+    case 4:
+        printf("please input the new name: ");
+        scanf("%s", _temp_name);
+        strcpy(p_pnode->name,_temp_name);
+        break;
+
+    default:
+        break;
+
+    }
+
 }
 
 

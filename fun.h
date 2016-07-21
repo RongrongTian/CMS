@@ -25,7 +25,7 @@ extern const char* modify[];
 /*******************Function Interface***************/
 
 /*Add a node data to StuLink head.*/
-extern StuLink* add_node(StuLink* p_head);
+extern StuLink* add_node(StuLink* p_head, StuLink* p_ptemp);
 
 /*Show one node data from StuLink.*/
 extern void show_one_node(StuLink* p_head);
@@ -48,17 +48,26 @@ extern StuLink* delete_node_by_name(StuLink* p_head, char*);
 /*Delete a node by the student`s number in the StuLink.*/
 extern StuLink* delete_node_by_number(StuLink* p_head, int);
 
+/*Delete a node*/
+extern void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew);
+
 /*Modify a node by the student`s name in the StuLink.*/
 extern StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname);
 
 /*Modify a node by the student`s number in the StuLink.*/
 extern StuLink* modify_node_by_number(StuLink* p_phead, int p_number);
 
+/*Modify a node data*/
+extern void modify_node(StuLink* p_pnode, int p_chose);
+
 /*This function show a menu that you can chose three function to opetate the student data.*/
 extern int menu_search_delete_modify(const char* operation_array[], int);
 
 /*This function which you can use to operate the student data in the set of [search, delete, modify].*/
 extern StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_array[], Fun_By_Name p_fun_name, Fun_By_Number p_fun_number);
+
+/*Init file name*/
+extern void init_file(char* p_pfile_name);
 
 /*Save a file that store the data that you input to the system.*/
 extern void save_file(StuLink* p_head, char*);
@@ -71,6 +80,9 @@ extern StuLink* malloc_node();
 
 /*Return a number that you select the part of the StuLink*/
 extern int modify_select();
+
+/*Init a node*/
+extern void init_node(StuLink* pnode);
 
 
 

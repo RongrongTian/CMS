@@ -43,7 +43,9 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 	switch (chose) {
 		case 1:
 			puts("\nAdd Node:");
-			phead = add_node(phead);
+			StuLink* ptemp = malloc_node();
+			init_node(ptemp);
+			phead = add_node(phead, ptemp);
 			break;
 		case 2:
 			puts("\nDelete Node:");
@@ -103,16 +105,12 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
 		case 7:
 			puts("\nSave file:");
-			printf("please input the save file name: ");
-			scanf("%s", file_name);
-		//	getchar();
+			init_file(file_name);
 			save_file(phead, file_name);
 			break;
 		case 8:
 			puts("\nRead file:");
-			printf("Please input the read file name: ");
-			scanf("%s", file_name);
-			getchar();
+			init_file(file_name);
 			phead = read_file(phead, file_name);
 			break;
 		case 0:
