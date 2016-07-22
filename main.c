@@ -49,7 +49,6 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
 		case 4:
 			puts("\nModify Node:");
-			//modify_node_by_name(phead, "jack");
 			pret_node = search_delete_modify_operation(phead, modify, modify_node_by_name, modify_node_by_number);
 			show_one_node(pret_node);
 			break;

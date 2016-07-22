@@ -79,13 +79,13 @@ StuLink* add_node(StuLink* phead, StuLink* p_ptemp) {
  */
 void show_node(StuLink* phead) {
     if (NULL == phead) {
-        printf("The StuLink is NULL\n");
+        printf("\tThe StuLink is NULL\n");
         return;
     }
 
     StuLink* ptemp = phead;
     while (ptemp) {
-        printf("%d %d %6.2f %s\n", ptemp->number, ptemp->age, ptemp->score, ptemp->name);
+        printf("\t%d %d %6.2f %s\n", ptemp->number, ptemp->age, ptemp->score, ptemp->name);
         ptemp = ptemp->pnext;
     }
 
@@ -290,7 +290,7 @@ void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
 void save_file(StuLink* phead, char* pfilename) {
     assert(phead != NULL);
 
-    FILE* pfw = fopen(pfilename, "wb");
+    FILE* pfw = fopen(pfilename, "ab");
     assert(pfw != NULL);
 
     StuLink* ptemp = phead;
@@ -322,7 +322,7 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
     int read_count = 0;
 
     while (1 == fread(ptemp, sizeof(StuLink), 1, pfr)) {
-        fflush(pfr);
+        //fflush(pfr);
         read_count++;
         phead = add_node(phead, ptemp);
         ptemp = malloc_node();
