@@ -1,5 +1,6 @@
 #include "fun.h"
 
+/*operation set*/
 const char* search[] = {"search by name", "search by number"};
 const char* delete[] = {"delete by name", "delete by number"};
 const char* modify[] = {"modify by name", "modify by number"};
