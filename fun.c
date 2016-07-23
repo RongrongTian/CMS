@@ -255,7 +255,8 @@ StuLink* delete_node_by_name(StuLink* phead, char* pname) {
 
     while (pn) {
         if (!strcmp(pn->name, pname)) {
-            delete_node(phead, pn, pr);
+            //delete_node(phead, pn, pr);
+            remove_node(&phead, pn);
             break;
         }
 
@@ -284,7 +285,8 @@ StuLink* delete_node_by_number(StuLink* phead, int number) {
 
     while (pn) {
         if (number == pn->number) {
-            delete_node(phead, pn, pr);
+            //delete_node(phead, pn, pr);
+            remove_node(&phead, pn);
             break;
         }
 
@@ -302,7 +304,6 @@ StuLink* delete_node_by_number(StuLink* phead, int number) {
  * \param p_privew:The point that point to the node pre.
  * \return void.
  */
-
 void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
     char _isDelete = 0;
 
@@ -325,7 +326,33 @@ void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
         free(p_pnode);
         p_pnode = NULL;
     }
+}
 
+/** \brief Delete a node.
+ *
+ * \param p_phead: The address of the StuLink head.
+ * \param p_pnode: The node that you want to delete.
+ * \return void.
+ */
+void remove_node(StuLink** p_phead, StuLink* p_pnode) {
+    char isDelete = 0;
+
+    printf("Sure to delete the node?\n");
+    show_one_node(p_pnode);
+    printf("y or n: ");
+    while ((isDelete = getchar()) == '\n');
+
+    if ('Y' == isDelete || 'y' == isDelete) {
+
+        StuLink** indirect = p_phead;
+
+        //Find p_pnode
+        while (*indirect != p_pnode)
+            indirect = &(*indirect)->pnext;
+
+        //Remove p_pnode
+        *indirect = p_pnode->pnext;
+    }
 
 }
 
@@ -422,7 +449,7 @@ StuLink* search_delete_modify_operation(StuLink* p_head, const char* operation_a
         printf("please input %s node name: ", temp_op_str);
         scanf("%s", node_name);
         return p_fun_name(p_head, node_name);
-     } else {
+    } else {
         printf("please input %s node number: ", temp_op_str);
         scanf("%d", &node_number);
         return  p_fun_number(p_head, node_number);

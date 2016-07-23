@@ -57,6 +57,9 @@ extern StuLink* delete_node_by_number(StuLink* p_head, int);
 /*Delete a node*/
 extern void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew);
 
+/*Remove a node*/
+extern void remove_node(StuLink** p_phead, StuLink* p_pnode);
+
 /*Modify a node by the student`s name in the StuLink.*/
 extern StuLink* modify_node_by_name(StuLink* p_phead, char* p_pname);
 
