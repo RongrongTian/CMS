@@ -50,13 +50,32 @@ StuLink* malloc_node() {
 }
 
 
+/** \brief Select add node type, by head or back.
+ *
+ * \return int Select number 0(Insert Head) or 1(Insert Back).
+ *
+ */
+int add_node_operation_select() {
+    puts("\tplease select insert node type");
+    puts("\t1.Insert node to head.");
+    puts("\t2.Insert node to back");
+
+    int chose = 0;
+    puts("please input you chose: ");
+    scanf("%d", &chose);
+    return chose;
+}
+
+
+
+
 /** \brief Add a node data to StuLink head.
  *
  * \param	phead : The head of the StuLink.
  * \param	p_ptemp : The node that you want to add to the head.
  * \return	StuLink*. The head of the StuLink.
  */
-StuLink* add_node(StuLink* phead, StuLink* p_ptemp) {
+StuLink* add_node_front(StuLink* phead, StuLink* p_ptemp) {
     //StuLink* ptemp = malloc_node();
 
     //init node data
@@ -72,6 +91,36 @@ StuLink* add_node(StuLink* phead, StuLink* p_ptemp) {
 
     return phead;
 }
+
+
+
+/** \brief  Add a node data to StuLink back.
+ *
+ * \param   p_head  The head of the StuLink
+ * \param   p_ptemp The node will be insert to StuLink back
+ * \return  StuLink* head
+ *
+ */
+StuLink* add_node_back(StuLink* p_head, StuLink* p_pnode) {
+
+    p_pnode->pnext = NULL;
+
+    //StuLink is empty
+    if (NULL == p_head)
+        return p_pnode;
+
+    StuLink* ptemp = p_head;
+
+    while (ptemp->pnext)
+        ptemp = ptemp->pnext;
+
+    ptemp->pnext = p_pnode;
+
+    return p_head;
+}
+
+
+
 
 /** \brief Show one node data from StuLink.
  *
@@ -325,7 +374,7 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
     while (1 == fread(ptemp, sizeof(StuLink), 1, pfr)) {
         //fflush(pfr);
         read_count++;
-        phead = add_node(phead, ptemp);
+        phead = add_node_front(phead, ptemp);
         ptemp = malloc_node();
     }
 

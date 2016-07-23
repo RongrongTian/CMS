@@ -24,8 +24,14 @@ extern const char* modify[];
 
 /*******************Function Interface***************/
 
+/*Select add node type, by head or back.*/
+extern int add_node_operation_select();
+
 /*Add a node data to StuLink head.*/
-extern StuLink* add_node(StuLink* p_head, StuLink* p_ptemp);
+extern StuLink* add_node_front(StuLink* p_head, StuLink* p_pnode);
+
+/*Add a node data to StuLink back.*/
+extern StuLink* add_node_back(StuLink* p_head, StuLink* p_pnode);
 
 /*Show one node data from StuLink.*/
 extern void show_one_node(StuLink* p_head);

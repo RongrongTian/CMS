@@ -36,7 +36,10 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			puts("\nAdd Node:");
 			StuLink* ptemp = malloc_node();
 			init_node(ptemp);
-			phead = add_node(phead, ptemp);
+			if (add_node_operation_select())
+                phead = add_node_front(phead, ptemp);
+            else
+                phead = add_node_back(phead, ptemp);
 			break;
 		case 2:
 			puts("\nDelete Node:");
