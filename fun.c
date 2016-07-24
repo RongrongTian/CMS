@@ -393,7 +393,12 @@ void save_file(StuLink* phead, char* pfilename) {
 StuLink* read_file(StuLink* phead, char* pfilename) {
 
     FILE* pfr = fopen(pfilename, "rb");
-    assert(pfr != NULL);
+    //assert(pfr != NULL);
+
+    if (NULL ==  pfr) {
+        puts("Open file fail, please check the file path.");
+        return phead;
+    }
 
     StuLink* ptemp = malloc_node();
     int read_count = 0;
