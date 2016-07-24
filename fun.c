@@ -368,7 +368,12 @@ void save_file(StuLink* phead, char* pfilename) {
     assert(phead != NULL);
 
     FILE* pfw = fopen(pfilename, "ab");
-    assert(pfw != NULL);
+    //assert(pfw != NULL);
+
+    if (NULL ==  pfw) {
+        puts("Open file fail, please check the file name and path.");
+        return phead;
+    }
 
     StuLink* ptemp = phead;
     int write_count = 0;
@@ -396,7 +401,7 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
     //assert(pfr != NULL);
 
     if (NULL ==  pfr) {
-        puts("Open file fail, please check the file path.");
+        puts("Open file fail, please check the file name and path.");
         return phead;
     }
 
