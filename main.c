@@ -78,6 +78,7 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
         case 9:
             puts("Sort node:");
+            //get_length(phead);
             break;
 		case 0:
 			puts("\nExit System!");

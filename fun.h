@@ -17,6 +17,7 @@ typedef struct student {
 }StuLink;
 
 
+
 typedef StuLink* (*Fun_By_Name)(StuLink*, char*);
 typedef StuLink* (*Fun_By_Number)(StuLink*, int);
 
