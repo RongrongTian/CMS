@@ -96,10 +96,6 @@ extern int modify_select();
 /*Init a node*/
 extern void init_node(StuLink* pnode);
 
-/*Sort StuLink by the student number.*/
-extern int sort_by_number(StuLink* p_phead);
-
-
 #endif // _FUN_H
 
 

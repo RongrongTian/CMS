@@ -372,7 +372,7 @@ void save_file(StuLink* phead, char* pfilename) {
 
     if (NULL ==  pfw) {
         puts("Open file fail, please check the file name and path.");
-        return phead;
+        return;
     }
 
     StuLink* ptemp = phead;
