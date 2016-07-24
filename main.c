@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "fun.h"
+#include "sort.h"
 
 
 /*Show menu to user*/
@@ -18,9 +19,10 @@ void show_menu(int* pchose) {
 	printf("\t6.Free all node from System\n");
 	printf("\t7.Save data to local file\n");
 	printf("\t8.Read data from local file\n");
+	printf("\t9.Sort all node.\n");
 	printf("\t0.Exit System\n");
 
-	printf("\nplease chose the number[0, 8]:");
+	printf("\nplease chose the number[0, 9]:");
 	scanf("%d", pchose);
 
 	putchar('\n');
@@ -74,6 +76,9 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			init_file(file_name);
 			phead = read_file(phead, file_name);
 			break;
+        case 9:
+            puts("Sort node:");
+            break;
 		case 0:
 			puts("\nExit System!");
 			free_all_node(phead);
