@@ -10,7 +10,7 @@
 void show_menu(int* pchose) {
 
 	printf("\n");
-	printf("--------Welocme to C Manage System--------\n");
+	printf("--------Welocme to C Manage System--------\n\n");
 	printf("\t1.Add a node to System\n");
 	printf("\t2.Delete a node from System\n");
 	printf("\t3.Search a node from System\n");
@@ -19,7 +19,7 @@ void show_menu(int* pchose) {
 	printf("\t6.Free all node from System\n");
 	printf("\t7.Save data to local file\n");
 	printf("\t8.Read data from local file\n");
-	printf("\t9.Sort all node.\n");
+	printf("\t9.Sort all data.\n");
 	printf("\t0.Exit System\n");
 
 	printf("\nplease chose the number[0, 9]:");
@@ -82,6 +82,7 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 
             StuLink** pnode_array = sort_init(phead);
 
+            //sort function pointer array, define in sort.h
             sort_pointer sort_fun_array[] = {
             sort_by_number_less, sort_by_age_less, sort_by_score_less, sort_by_name_less,
             sort_by_number_greater, sort_by_age_greater, sort_by_score_greater, sort_by_name_less};

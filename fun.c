@@ -76,11 +76,6 @@ int add_node_operation_select() {
  * \return	StuLink*. The head of the StuLink.
  */
 StuLink* add_node_front(StuLink* phead, StuLink* p_ptemp) {
-    //StuLink* ptemp = malloc_node();
-
-    //init node data
-    //init_node(ptemp);
-
     if (NULL == phead) {
         p_ptemp->pnext = NULL;
         phead = p_ptemp;
@@ -111,9 +106,11 @@ StuLink* add_node_back(StuLink* p_head, StuLink* p_pnode) {
 
     StuLink* ptemp = p_head;
 
+    //Get last node
     while (ptemp->pnext)
         ptemp = ptemp->pnext;
 
+    //Link p_pnode to last
     ptemp->pnext = p_pnode;
 
     return p_head;
@@ -129,7 +126,7 @@ StuLink* add_node_back(StuLink* p_head, StuLink* p_pnode) {
  */
 void show_node(StuLink* phead) {
     if (NULL == phead) {
-        printf("\tThe StuLink is NULL\n");
+        printf("The System don`t has data now, if you want to add a node, please input 1.\n");
         return;
     }
 
@@ -189,14 +186,13 @@ StuLink* search_node_by_number(StuLink* phead, int number) {
  * \return	void.
  */
 void free_all_node(StuLink* phead) {
-    //assert(phead != NULL);
-
     if (NULL == phead) {
         return;
     }
 
     StuLink* ptemp = phead;
 
+    //Free every node
     while (ptemp) {
         phead = phead->pnext;
         free(ptemp);
@@ -226,13 +222,12 @@ void show_one_node(StuLink* pnode) {
  * \return	int : The number of you chose 1 or 0, 0 is the first of the ppstring(array), and 1 is the next and the last.
  */
 int menu_search_delete_modify(const char** pstring, int num) {
-    //int i = 0;
     for (int i = 0; i < num; i++) {
         printf("\t%d. %s\n", i + 1, pstring[i]);
     }
 
     int chose = 0;
-    printf("\t\nplease input your chose: ");
+    printf("\nplease input your chose: ");
     scanf("%d", &chose);
 
     return chose;
@@ -248,10 +243,10 @@ StuLink* delete_node_by_name(StuLink* phead, char* pname) {
     assert(phead != NULL);
     assert(pname != NULL);
 
-    //StuLink* ptemp = phead;
     StuLink* pr = phead;
-    StuLink* pn = phead;//This pointer is point to the delete node
-//    char isDelete = 0;
+    //This pointer is point to the delete node
+    StuLink* pn = phead;
+
 
     while (pn) {
         if (!strcmp(pn->name, pname)) {
@@ -277,11 +272,11 @@ StuLink* delete_node_by_name(StuLink* phead, char* pname) {
 StuLink* delete_node_by_number(StuLink* phead, int number) {
     assert(phead != NULL);
 
-    //StuLink* ptemp = phead;
+
     StuLink* pr = phead;
     //This pointer is point to the delete node
     StuLink* pn = phead;
-    //char isDelete = 0;
+
 
     while (pn) {
         if (number == pn->number) {
@@ -297,6 +292,27 @@ StuLink* delete_node_by_number(StuLink* phead, int number) {
     return phead;
 }
 
+
+
+/** \brief Confirm whether to delete a node
+ *
+ * \param p_pdelete StuLink*
+ * \return char Return 'Y' or 'y' that is delete node.
+ *
+ */
+char delete_node_confirm(StuLink* p_pdelete) {
+    char _isDelete = 0;
+
+    printf("Sure to delete the node?\n");
+    show_one_node(p_pdelete);
+    printf("y(Y) or n(N): ");
+    while ((_isDelete = getchar()) == '\n');
+    return _isDelete;
+}
+
+
+
+
 /** \brief Delete a node.
  *
  * \param p_phead: The head of the StuLink.
@@ -305,22 +321,23 @@ StuLink* delete_node_by_number(StuLink* phead, int number) {
  * \return void.
  */
 void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
-    char _isDelete = 0;
 
+#if 0
+    char _isDelete = 0;
     printf("Sure to delete the node?\n");
     show_one_node(p_pnode);
     printf("y or n: ");
     while ((_isDelete = getchar()) == '\n');
+#endif
 
-    if ('Y' == _isDelete || 'y' == _isDelete) {
+    char isDelete = delete_node_confirm(p_pnode);
+
+    if ('Y' == isDelete || 'y' == isDelete) {
         if (p_pnode == p_phead) {
-
             //delete head node
             p_phead = p_phead->pnext;
         } else {
-
-            //if pn->pnext = NULL, then we can delete the last	node.
-
+            //if pn->pnext = NULL, then we can delete the last node.
             p_privew->pnext = p_pnode->pnext;
         }
         free(p_pnode);
@@ -328,20 +345,22 @@ void delete_node(StuLink* p_phead, StuLink* p_pnode, StuLink* p_privew) {
     }
 }
 
-/** \brief Delete a node.
+/** \brief Delete a node in the other greater way than the Function:delete_node.
  *
  * \param p_phead: The address of the StuLink head.
  * \param p_pnode: The node that you want to delete.
  * \return void.
  */
 void remove_node(StuLink** p_phead, StuLink* p_pnode) {
+#if 0
     char isDelete = 0;
 
     printf("Sure to delete the node?\n");
     show_one_node(p_pnode);
     printf("y or n: ");
     while ((isDelete = getchar()) == '\n');
-
+#endif
+    char isDelete = delete_node_confirm(p_pnode);
     if ('Y' == isDelete || 'y' == isDelete) {
 
         StuLink** indirect = p_phead;
@@ -411,7 +430,6 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
     int read_count = 0;
 
     while (1 == fread(ptemp, sizeof(StuLink), 1, pfr)) {
-        //fflush(pfr);
         read_count++;
         phead = add_node_front(phead, ptemp);
         ptemp = malloc_node();

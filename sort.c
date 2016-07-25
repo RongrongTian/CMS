@@ -19,7 +19,9 @@ StuLink** sort_init(StuLink* p_phead) {
     StuLink* ptemp = p_phead;
     for (int i = 0; i < length; i++) {
         node_array[i] = ptemp;
+#if _DEBUG_
         printf("node_array[%d] = 0x%X, ptemp = 0x%X\n", i, node_array[i], ptemp);
+#endif // _DEBUG_
         ptemp = ptemp->pnext;
     }
 
@@ -41,9 +43,9 @@ size_t get_length(StuLink* p_head) {
         p_head = p_head->pnext;
         length++;
     }
-
+#if _DEBUG_
     printf("length = %d\n", length);
-
+#endif // _DEBUG_
     return length;
 }
 
@@ -59,7 +61,9 @@ size_t get_length(StuLink* p_head) {
  */
 void qsort_stulink(StuLink** p_pnode_array, size_t p_length, size_t p_size, int(*sort_fun)(const void*,const void*)) {
     qsort((void*)p_pnode_array, p_length, p_size, sort_fun);
-    //show_node_array(p_pnode_array, p_length, p_size);
+#if _DEBUG_
+    show_node_array(p_pnode_array, p_length, p_size);
+#endif // _DEBUG_
 }
 
 

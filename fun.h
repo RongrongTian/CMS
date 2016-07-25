@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#define START_DEBUG_MODAL 1
+#define STOP_DEBUG_MODAL 0
+
+#define _DEBUG_ STOP_DEBUG_MODAL
 
 /*The LinkList of the student*/
 typedef struct student {
@@ -96,6 +100,10 @@ extern int modify_select();
 
 /*Init a node*/
 extern void init_node(StuLink* pnode);
+
+/*Confirm whether to delete a node.*/
+extern char delete_node_confirm(StuLink* p_pdelete);
+
 
 #endif // _FUN_H
 
