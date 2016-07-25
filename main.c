@@ -4,7 +4,12 @@
 #include <stdlib.h>
 #include "fun.h"
 #include "sort.h"
+#include "CMS_Utils.h"
 
+#define IS_HEAD_NULL(phead) if (!is_head_NULL(phead)) {\
+                printf("The System don`t has data now, if you want to add a node, please input 1.\n");\
+                return phead;\
+		    }
 
 /*Show menu to user*/
 void show_menu(int* pchose) {
@@ -44,29 +49,35 @@ StuLink* menu_fun(StuLink* phead, int chose) {
                 phead = add_node_back(phead, ptemp);
 			break;
 		case 2:
+		    IS_HEAD_NULL(phead);
 			puts("\nDelete Node:");
 			phead = search_delete_modify_operation(phead, delete, delete_node_by_name, delete_node_by_number);
 			break;
 		case 3:
+            IS_HEAD_NULL(phead);
 			puts("\nSearch Node:");
 			pret_node = search_delete_modify_operation(phead, search, search_node_by_name, search_node_by_number);
 			show_one_node(pret_node);
 			break;
 		case 4:
+		    IS_HEAD_NULL(phead);
 			puts("\nModify Node:");
 			pret_node = search_delete_modify_operation(phead, modify, modify_node_by_name, modify_node_by_number);
 			show_one_node(pret_node);
 			break;
 		case 5:
+		    IS_HEAD_NULL(phead);
 			puts("\nShow Node:");
 			show_node(phead);
 			break;
 		case 6:
+		    IS_HEAD_NULL(phead);
 			puts("\nFree Node:");
 			free_all_node(phead);
 			phead = NULL;
 			break;
 		case 7:
+		    IS_HEAD_NULL(phead);
 			puts("\nSave file:");
 			init_file(file_name);
 			save_file(phead, file_name);
@@ -77,6 +88,7 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			phead = read_file(phead, file_name);
 			break;
         case 9:
+            IS_HEAD_NULL(phead);
             puts("Sort node:");
             size_t _length = get_length(phead);
 
@@ -114,7 +126,10 @@ int main() {
 	StuLink* phead = NULL;
 
 	while (1) {
+        //Show operation menu and select.
 		show_menu(&chose);
+
+        //Execute menu operation.
 		phead = menu_fun(phead, chose);
 	}
 
