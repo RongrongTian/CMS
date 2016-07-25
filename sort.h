@@ -5,7 +5,6 @@
 
 typedef int (*sort_pointer)(const void*, const void*);
 
-
 /*Get Stulink length.*/
 extern size_t get_length(StuLink* p_head);
 

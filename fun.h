@@ -104,7 +104,6 @@ extern void init_node(StuLink* pnode);
 /*Confirm whether to delete a node.*/
 extern char delete_node_confirm(StuLink* p_pdelete);
 
-
 #endif // _FUN_H
 
 

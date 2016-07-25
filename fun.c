@@ -431,7 +431,7 @@ StuLink* read_file(StuLink* phead, char* pfilename) {
 
     while (1 == fread(ptemp, sizeof(StuLink), 1, pfr)) {
         read_count++;
-        phead = add_node_front(phead, ptemp);
+        phead = add_node_back(phead, ptemp);
         ptemp = malloc_node();
     }
 
