@@ -79,6 +79,11 @@ StuLink* menu_fun(StuLink* phead, int chose) {
         case 9:
             puts("Sort node:");
             //get_length(phead);
+            StuLink** pnode_array = sort_init(phead);
+            qsort_stulink(pnode_array, get_length(phead), sizeof(pnode_array[0]), sort_by_number);
+            show_node_array(pnode_array, get_length(phead), sizeof(pnode_array[0]));
+            free(pnode_array);
+            pnode_array = NULL;
             break;
 		case 0:
 			puts("\nExit System!");
