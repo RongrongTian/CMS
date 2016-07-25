@@ -97,6 +97,21 @@ int sort_by_score(const void* p_plhs,const void* p_prhs) {
 }
 
 
+/** \brief Sort the StuLink by then name.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_name(const void* p_plhs,const void* p_prhs) {
+    if (strcmp((*((StuLink**)p_plhs))->name, (*((StuLink**)p_prhs))->name) > 0)
+        return 1;
+}
+
+
+
+
 /** \brief Show the sort node array.
  *
  * \param p_pnode_array StuLink**
