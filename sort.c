@@ -70,8 +70,8 @@ void qsort_stulink(StuLink** p_pnode_array, size_t p_length, size_t p_size, int(
  * \return int
  *
  */
-int sort_by_number(const void* p_plhs,const void* p_prhs) {
-    return (*((StuLink**)p_plhs))->number > (*((StuLink**)p_prhs))->number;
+int sort_by_number_less(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->number >= (*((StuLink**)p_prhs))->number;
 }
 
 /** \brief Sort the StuLink by then age.
@@ -81,8 +81,8 @@ int sort_by_number(const void* p_plhs,const void* p_prhs) {
  * \return int
  *
  */
-int sort_by_age(const void* p_plhs,const void* p_prhs) {
-    return (*((StuLink**)p_plhs))->age > (*((StuLink**)p_prhs))->age;
+int sort_by_age_less(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->age >= (*((StuLink**)p_prhs))->age;
 }
 
 /** \brief Sort the StuLink by then score.
@@ -92,8 +92,8 @@ int sort_by_age(const void* p_plhs,const void* p_prhs) {
  * \return int
  *
  */
-int sort_by_score(const void* p_plhs,const void* p_prhs) {
-    return (*((StuLink**)p_plhs))->score > (*((StuLink**)p_prhs))->score;
+int sort_by_score_less(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->score >= (*((StuLink**)p_prhs))->score;
 }
 
 
@@ -104,11 +104,58 @@ int sort_by_score(const void* p_plhs,const void* p_prhs) {
  * \return int
  *
  */
-int sort_by_name(const void* p_plhs,const void* p_prhs) {
-    if (strcmp((*((StuLink**)p_plhs))->name, (*((StuLink**)p_prhs))->name) > 0)
+int sort_by_name_less(const void* p_plhs,const void* p_prhs) {
+    if (strcmp((*((StuLink**)p_plhs))->name, (*((StuLink**)p_prhs))->name) >= 0)
         return 1;
 }
 
+
+
+/** \brief Sort the StuLink by then number by greater.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_number_greater(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->number < (*((StuLink**)p_prhs))->number;
+}
+
+/** \brief Sort the StuLink by then age by greater.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_age_greater(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->age < (*((StuLink**)p_prhs))->age;
+}
+
+/** \brief Sort the StuLink by then score by greater.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_score_greater(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->score < (*((StuLink**)p_prhs))->score;
+}
+
+
+/** \brief Sort the StuLink by then name by greater.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_name_greater(const void* p_plhs,const void* p_prhs) {
+    if (strcmp((*((StuLink**)p_plhs))->name, (*((StuLink**)p_prhs))->name) < 0)
+        return 1;
+}
 
 
 
@@ -120,7 +167,7 @@ int sort_by_name(const void* p_plhs,const void* p_prhs) {
  * \return void
  *
  */
-void show_node_array(StuLink** p_pnode_array, size_t p_length, size_t p_size) {
+void show_node_array(StuLink** p_pnode_array, size_t p_length) {
     for (int i = 0; i < p_length; i++)
         show_one_node(p_pnode_array[i]);
 }

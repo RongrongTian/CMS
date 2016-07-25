@@ -78,10 +78,14 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			break;
         case 9:
             puts("Sort node:");
-            //get_length(phead);
+            size_t _length = get_length(phead);
+
             StuLink** pnode_array = sort_init(phead);
-            qsort_stulink(pnode_array, get_length(phead), sizeof(pnode_array[0]), sort_by_name);
-            show_node_array(pnode_array, get_length(phead), sizeof(pnode_array[0]));
+
+            qsort_stulink(pnode_array, _length, sizeof(pnode_array[0]), sort_by_name_less);
+
+            show_node_array(pnode_array, _length);
+
             free(pnode_array);
             pnode_array = NULL;
             break;
