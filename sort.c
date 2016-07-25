@@ -158,6 +158,35 @@ int sort_by_name_greater(const void* p_plhs,const void* p_prhs) {
 }
 
 
+/** \brief Select a sort operation
+ *
+ * \return int
+ *
+ */
+int sort_operation() {
+    puts("please select sort operation:");
+
+    puts("\nless to greater:");
+    puts("\t1.Sort_by_number_less");
+    puts("\t2.Sort_by_age_less");
+    puts("\t3.Sort_by_score_less");
+    puts("\t4.Sort_by_name_less");
+
+    puts("\ngreater to less:");
+    puts("\t5.Sort_by_number_greater");
+    puts("\t6.Sort_by_age_greater");
+    puts("\t7.Sort_by_score_greater");
+    puts("\t8.Sort_by_name_greater");
+
+    int chose = 0;
+    printf("\nplease input your chose[1,8]: ");
+    scanf("%d", &chose);
+
+    return chose;
+}
+
+
+
 
 /** \brief Show the sort node array.
  *

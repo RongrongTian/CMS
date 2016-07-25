@@ -82,8 +82,14 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 
             StuLink** pnode_array = sort_init(phead);
 
-            qsort_stulink(pnode_array, _length, sizeof(pnode_array[0]), sort_by_name_less);
+            sort_pointer sort_fun_array[] = {
+            sort_by_number_less, sort_by_age_less, sort_by_score_less, sort_by_name_less,
+            sort_by_number_greater, sort_by_age_greater, sort_by_score_greater, sort_by_name_less};
 
+            //start qsort.
+            qsort_stulink(pnode_array, _length, sizeof(pnode_array[0]), sort_fun_array[sort_operation() - 1]);
+
+            //print node array that has been qsort.
             show_node_array(pnode_array, _length);
 
             free(pnode_array);

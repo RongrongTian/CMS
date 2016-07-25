@@ -3,6 +3,9 @@
 
 #include "fun.h"
 
+typedef int (*sort_pointer)(const void*, const void*);
+
+
 /*Get Stulink length.*/
 extern size_t get_length(StuLink* p_head);
 
@@ -36,6 +39,8 @@ extern int sort_by_score_greater(const void* p_plhs,const void* p_prhs);
 /*Sort the StuLink by then name by greater.*/
 extern int sort_by_name_greater(const void* p_plhs,const void* p_prhs);
 
+/*Select a sort operation.*/
+extern int sort_operation();
 
 /*Show the sort node array.*/
 extern void show_node_array(StuLink** p_pnode_array, size_t p_length);
