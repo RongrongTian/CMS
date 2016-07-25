@@ -396,6 +396,8 @@ void save_file(StuLink* phead, char* pfilename) {
  * \return	StuLink* : The head of the read StuLink data.
  */
 StuLink* read_file(StuLink* phead, char* pfilename) {
+    //Before read, must free all node in memory--bug
+    //free_all_node(phead);
 
     FILE* pfr = fopen(pfilename, "rb");
     //assert(pfr != NULL);

@@ -71,12 +71,21 @@ void qsort_stulink(StuLink** p_pnode_array, size_t p_length, size_t p_size, int(
  *
  */
 int sort_by_number(const void* p_plhs,const void* p_prhs) {
-    //return ((StuLink*)p_plhs)->number < ((StuLink*)p_prhs)->number;
-
     return (*((StuLink**)p_plhs))->number > (*((StuLink**)p_prhs))->number;
-
-    //return ((StuLink**)p_plhs[0]).number < ((StuLink**)p_plhs[0]).number;
 }
+
+/** \brief Sort the StuLink by then age.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_age(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->age > (*((StuLink**)p_prhs))->age;
+}
+
+
 
 /** \brief Show the sort node array.
  *
