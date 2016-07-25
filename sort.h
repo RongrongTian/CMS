@@ -19,6 +19,9 @@ extern int sort_by_number(const void* p_plhs,const void* p_prhs);
 /*Sort the StuLink by then age.*/
 extern int sort_by_age(const void* p_plhs,const void* p_prhs);
 
+/*Sort the StuLink by then score.*/
+extern int sort_by_score(const void* p_plhs,const void* p_prhs);
+
 /*Show the sort node array.*/
 extern void show_node_array(StuLink** p_pnode_array, size_t p_length, size_t p_size);
 

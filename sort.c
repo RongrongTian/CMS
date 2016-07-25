@@ -85,6 +85,16 @@ int sort_by_age(const void* p_plhs,const void* p_prhs) {
     return (*((StuLink**)p_plhs))->age > (*((StuLink**)p_prhs))->age;
 }
 
+/** \brief Sort the StuLink by then score.
+ *
+ * \param p_plhs const void*
+ * \param p_prhs const void*
+ * \return int
+ *
+ */
+int sort_by_score(const void* p_plhs,const void* p_prhs) {
+    return (*((StuLink**)p_plhs))->score > (*((StuLink**)p_prhs))->score;
+}
 
 
 /** \brief Show the sort node array.
