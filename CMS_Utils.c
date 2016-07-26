@@ -62,12 +62,31 @@ StuLink* read_text_file(StuLink* phead, char* pfilename) {
         return phead;
     }
 
-    StuLink* ptemp = malloc_node();
+
     char node_buf[100] = {0};
-    fgets(node_buf, pfr);
-    fgets(node_buf, pfr);
+    fgets(node_buf, 100, pfr);
+    fgets(node_buf, 100, pfr);
     memset(node_buf, 0, 100);
 
+    StuLink* ptemp = malloc_node();
+    //从文件中的第3行开始读取
+    while (!feof(pfr))) {
+
+#if 1
+        fgets(node_buf, 100, pfr);
+        puts(node_buf);
+#endif // _DEBUG_
+
+        //ptemp->number = node_buf[0] - 48;
+
+        fscanf(pfr, "%d\t%s\t%d\t%6.2f\n", &ptemp->number, ptemp->name, &ptemp->age, &ptemp->score);
+        show_one_node(ptemp);
+        //add_node_back(phead, ptemp);
+        //ptemp = malloc_node();
+    }
+
+    fclose(pfr);
+    return NULL;
 
 
 }

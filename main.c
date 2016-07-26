@@ -88,7 +88,8 @@ StuLink* menu_fun(StuLink* phead, int chose) {
 			init_file(file_name);
 			free_all_node(phead);
 			phead = NULL;
-			phead = read_file(phead, file_name);
+			//phead = read_file(phead, file_name);
+			phead = read_text_file(phead, file_name);
 			break;
         case 9:
             IS_HEAD_NULL(phead);
@@ -138,3 +139,15 @@ int main() {
 
 	return 0;
 }
+
+
+
+int main2() {
+
+    int x[2][2] = {1, 2, 3, 4};
+    printf("%x", &x[1]);
+
+    return 0;
+}
+
+
