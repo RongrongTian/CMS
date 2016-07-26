@@ -405,7 +405,7 @@ void save_file(StuLink* phead, char* pfilename) {
         ptemp = ptemp->pnext;
     }
     fclose(pfw);
-    printf("\tsave to file success, write count = %d\n", write_count);
+    printf("Save to binary file success, write count = %d\n", write_count);
 }
 
 /** \brief This function can read student data from local file.

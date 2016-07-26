@@ -44,9 +44,24 @@ void save_text_file(StuLink* phead, char* pfilename) {
 }
 
 
+/** \brief Read data from text file.
+ *
+ * \param phead StuLink*
+ * \param pfilename char*
+ * \return StuLink*
+ *
+ */
+StuLink* read_text_file(StuLink* phead, char* pfilename) {
+    FILE* pfr = fopen(pfilename, "r");
+
+    if (NULL ==  pfr) {
+        puts("Open file fail, please check the file name and path.");
+        return phead;
+    }
+}
 
 
-
+#if 0
 /** \brief Read data from text file.
  *
  * \param phead StuLink*
@@ -70,19 +85,20 @@ StuLink* read_text_file(StuLink* phead, char* pfilename) {
 
     StuLink* ptemp = malloc_node();
     //从文件中的第3行开始读取
-    while (!feof(pfr))) {
+    while (!feof(pfr)) {
 
-#if 1
+#if _DEBUG_
         fgets(node_buf, 100, pfr);
         puts(node_buf);
 #endif // _DEBUG_
 
         //ptemp->number = node_buf[0] - 48;
 
-        fscanf(pfr, "%d\t%s\t%d\t%6.2f\n", &ptemp->number, ptemp->name, &ptemp->age, &ptemp->score);
+        //fscanf(pfr, "%d\t%s\t%d\t%6.2f\n", &ptemp->number, ptemp->name, &ptemp->age, &ptemp->score);
         show_one_node(ptemp);
         //add_node_back(phead, ptemp);
         //ptemp = malloc_node();
+        fseek(pfr, sizeof(*ptemp) + 4, SEEK_CUR);
     }
 
     fclose(pfr);
@@ -90,7 +106,7 @@ StuLink* read_text_file(StuLink* phead, char* pfilename) {
 
 
 }
-
+#endif
 
 
 
