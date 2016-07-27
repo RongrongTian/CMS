@@ -2,6 +2,35 @@
 
 
 
+void save_sort_text_file(StuLink** p_node_array, char* p_filename, size_t p_length) {
+    FILE* pfw = fopen(p_filename, "w");
+
+    if (NULL == pfw) {
+        puts("Open file fail, please check the file name and path.");
+        return;
+    }
+
+    char node_buf[100] = {0};
+    fputs("ID\tName\tAge\t Score\n\n", pfw);
+
+    for (int i = 0; i < p_length; i++) {
+        sprintf(node_buf, "%d\t%s\t%d\t%6.2f\n", p_node_array[i]->number, p_node_array[i]->name, p_node_array[i]->age, p_node_array[i]->score);
+        fputs(node_buf, pfw);
+    }
+
+    //fclose , no close
+    fclose(pfw);
+
+    printf("Save sort text file success.");
+
+}
+
+
+
+
+
+
+
 /** \brief Judgment the head whether is NULL.
  *
  * \param p_phead StuLink*
