@@ -112,7 +112,6 @@ StuLink* menu_fun(StuLink* phead, int chose) {
             show_node_array(pnode_array, _length);
 
             //保存排序之后的文本
-
             init_file(file_name);
             save_sort_text_file(pnode_array, file_name, _length);
 

@@ -2,6 +2,14 @@
 
 
 
+/** \brief Save memory data that have sort to text file.
+ *
+ * \param p_node_array StuLink**
+ * \param p_filename char*
+ * \param p_length size_t
+ * \return void
+ *
+ */
 void save_sort_text_file(StuLink** p_node_array, char* p_filename, size_t p_length) {
     FILE* pfw = fopen(p_filename, "w");
 
